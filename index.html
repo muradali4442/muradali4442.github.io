@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Murad Ali – AI Engineer (LLMs, RAG, ASR, DocAI)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta
+    name="description"
+    content="Murad Ali – AI Engineer in Ilmenau, Germany. I build production systems for search, question answering, speech and document understanding."
+  />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+      color-scheme: light;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem 1.5rem;
+      background: radial-gradient(circle at top, #eef2ff, #e5e7eb);
+      color: #0f172a;
+    }
+
+    .shell {
+      width: 100%;
+      max-width: 980px;
+      background: #ffffff;
+      border-radius: 1.75rem;
+      box-shadow: 0 22px 55px rgba(15, 23, 42, 0.18);
+      padding: 2.3rem 2.6rem;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+      gap: 2.5rem;
+    }
+
+    @media (max-width: 760px) {
+      .shell {
+        grid-template-columns: 1fr;
+        padding: 2rem 1.7rem;
+      }
+    }
+
+    .left {
+      border-right: 1px solid #e5e7eb;
+      padding-right: 2rem;
+    }
+
+    @media (max-width: 760px) {
+      .left {
+        border-right: none;
+        border-bottom: 1px solid #e5e7eb;
+        padding-right: 0;
+        padding-bottom: 1.5rem;
+      }
+    }
+
+    .right {
+      font-size: 0.9rem;
+      color: #4b5563;
+    }
+
+    .avatar {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #e5e7eb;
+      margin-bottom: 1.3rem;
+    }
+
+    h1 {
+      font-size: 1.9rem;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.25rem;
+    }
+
+    .role {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: #6b7280;
+      margin-bottom: 1.1rem;
+    }
+
+    .summary {
+      font-size: 0.95rem;
+      color: #374151;
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .tagline {
+      font-size: 0.9rem;
+      color: #111827;
+      font-weight: 500;
+      margin-bottom: 1.3rem;
+    }
+
+    .quote {
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #4b5563;
+      margin-bottom: 1.3rem;
+    }
+
+    .quote span {
+      display: block;
+      font-style: normal;
+      font-size: 0.8rem;
+      color: #9ca3af;
+      margin-top: 0.3rem;
+    }
+
+    .meta {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 1.4rem;
+      line-height: 1.4;
+    }
+
+    .meta div + div {
+      margin-top: 0.2rem;
+    }
+
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-bottom: 0.7rem;
+    }
+
+    .pill-link {
+      font-size: 0.85rem;
+      text-decoration: none;
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      border: 1px solid #e5e7eb;
+      background: #f9fafb;
+      color: #111827;
+      transition: transform 0.12s ease, box-shadow 0.12s ease,
+        background-color 0.12s ease, border-color 0.12s ease;
+      white-space: nowrap;
+    }
+
+    .pill-link:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.18);
+      border-color: #6366f1;
+      background: #eef2ff;
+    }
+
+    .section {
+      margin-bottom: 1.6rem;
+    }
+
+    .section-title {
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      color: #6b7280;
+      margin-bottom: 0.55rem;
+    }
+
+    .item {
+      margin-bottom: 0.9rem;
+    }
+
+    .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      margin-bottom: 0.12rem;
+    }
+
+    .item-title {
+      font-weight: 600;
+      color: #111827;
+    }
+
+    .item-meta {
+      font-size: 0.8rem;
+      color: #9ca3af;
+      white-space: nowrap;
+    }
+
+    .item-subtitle {
+      font-size: 0.85rem;
+      color: #6b7280;
+      margin-bottom: 0.25rem;
+    }
+
+    .item-body {
+      font-size: 0.86rem;
+      color: #4b5563;
+      line-height: 1.5;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.4rem 1rem;
+      font-size: 0.86rem;
+    }
+
+    .skill-label {
+      font-weight: 600;
+      color: #111827;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .skill-text {
+      color: #4b5563;
+    }
+
+    .footer-note {
+      font-size: 0.78rem;
+      color: #9ca3af;
+      margin-top: 0.8rem;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <!-- LEFT: Intro / Identity -->
+    <section class="left">
+      <!-- OPTION 1: download your GitHub avatar as avatar.jpg and keep this src,
+           or OPTION 2: replace src with your avatar URL:
+           https://avatars.githubusercontent.com/u/63498217?v=4
+      -->
+      <img
+        src="avatar.jpg"
+        alt="Portrait of Murad Ali"
+        class="avatar"
+      />
+
+      <h1>Murad Ali</h1>
+      <div class="role">AI Engineer · LLMs · RAG · ASR · DocAI</div>
+
+      <p class="summary">
+        AI engineer in Ilmenau, Germany. I build production systems for search,
+        question answering, speech and document understanding, with a focus on
+        turning messy PDFs and invoices into reliable data and services that
+        actually ship.
+      </p>
+
+      <p class="tagline">
+        I like turning messy data into reliable products and I’m open to collaboration.
+      </p>
+
+      <p class="quote">
+        "Build systems that stay reliable when things get messy in the real world."
+        <span>— Engineering philosophy</span>
+      </p>
+
+      <div class="meta">
+        <div>📍 Ilmenau, Germany</div>
+        <div>🎓 Ilmenau University of Technology</div>
+        <div>📧 <a href="mailto:muraduetian@gmail.com">muraduetian@gmail.com</a></div>
+      </div>
+
+      <div class="links">
+        <a class="pill-link" href="mailto:muraduetian@gmail.com">Email</a>
+        <a
+          class="pill-link"
+          href="https://www.linkedin.com/in/murad-ali-715a09150"
+          target="_blank"
+          rel="noreferrer"
+        >LinkedIn</a>
+        <a
+          class="pill-link"
+          href="https://github.com/muradali4442"
+          target="_blank"
+          rel="noreferrer"
+        >GitHub</a>
+        <!-- Optional: link directly to a pinned project -->
+        <a
+          class="pill-link"
+          href="https://github.com/muradali4442/thesis_extractor"
+          target="_blank"
+          rel="noreferrer"
+        >Thesis Extractor</a>
+      </div>
+
+      <div class="footer-note">
+        Focused on production LLM systems, retrieval, speech models and
+        document AI with strong evaluation, guardrails and observability.
+      </div>
+    </section>
+
+    <!-- RIGHT: Experience / Projects / Skills -->
+    <section class="right">
+      <div class="section">
+        <div class="section-title">Experience</div>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">AI Engineer</div>
+            <div class="item-meta">Sep 2024 – May 2025 · Eclevar Medtech</div>
+          </div>
+          <div class="item-subtitle">
+            Clinical consultation assistant · Medical ASR · RAG for guideline-backed answers
+          </div>
+          <div class="item-body">
+            Built a clinical assistant on GCP (Vertex AI, Cloud Run) that cut guideline lookup
+            time from minutes to seconds and reduced post-visit documentation. Productionized
+            domain-tuned ASR and LLM-powered SOAP summaries, extraction and risk flags with
+            guardrails and evaluation.
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">AI Engineer (NLP/LLMs)</div>
+            <div class="item-meta">Mar 2023 – Aug 2024 · Incowia GmbH</div>
+          </div>
+          <div class="item-subtitle">
+            Invoice understanding · Document AI · LLM fallbacks for edge cases
+          </div>
+          <div class="item-body">
+            Delivered an invoice extraction pipeline turning scanned PDFs into normalized
+            line-item records using OCR, layout-aware models and LLM fallbacks, with
+            >90% F1 on key fields and reduced manual review.
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">Research in Biomedical NLP</div>
+            <div class="item-meta">Mar 2024 – Sep 2024 · Master Thesis</div>
+          </div>
+          <div class="item-subtitle">
+            Retrieval-Augmented Generation for biomedical QA
+          </div>
+          <div class="item-body">
+            Explored RAG pipelines over biomedical literature with dense retrieval, FAISS
+            indexing and RAGAS-based evaluation to improve faithfulness and precision of
+            generated answers.
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">Deep Learning Engineer (HIWI)</div>
+            <div class="item-meta">Jan 2022 – Feb 2023 · Max Planck Institute</div>
+          </div>
+          <div class="item-subtitle">
+            Computer vision · Object detection · Plant species recognition
+          </div>
+          <div class="item-body">
+            Built an object detection pipeline with modern segmentation/detection models for
+            biological samples and improved plant species recognition accuracy using deep
+            CNNs.
+          </div>
+        </article>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Selected Projects</div>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">Shift AI – LLM-Powered Shift Scheduling</div>
+            <div class="item-meta">2025</div>
+          </div>
+          <div class="item-body">
+            Constraint-aware shift planner using LangChain + LLMs and semantic search over
+            rules. Backed by FastAPI and PostgreSQL for reliable schedule data.
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">AI Agents Automation</div>
+            <div class="item-meta">2025</div>
+          </div>
+          <div class="item-body">
+            Multi-agent system that files and routes work, posts updates to chat, pulls
+            knowledge from a vector store and interacts with tickets and alerts.
+          </div>
+        </article>
+
+        <article class="item">
+          <div class="item-header">
+            <div class="item-title">Early Dyslexia Detection</div>
+            <div class="item-meta">2024</div>
+          </div>
+          <div class="item-body">
+            Multimodal screening combining handwriting analysis, ASR features and cognitive
+            tasks with a CatBoost classifier for interpretable risk scores.
+          </div>
+        </article>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Skills</div>
+        <div class="skills-grid">
+          <div>
+            <div class="skill-label">Programming</div>
+            <div class="skill-text">Python, C++, C</div>
+          </div>
+          <div>
+            <div class="skill-label">LLMs & Reasoning</div>
+            <div class="skill-text">
+              Transformers, Hugging Face, GPT, Gemini, Claude, Llama, LangChain, LangGraph,
+              LlamaIndex, tool-calling, structured prompts
+            </div>
+          </div>
+          <div>
+            <div class="skill-label">Retrieval & Vectors</div>
+            <div class="skill-text">
+              FAISS, pgvector, BM25 + dense retrieval, rerankers, schema-aware chunking
+            </div>
+          </div>
+          <div>
+            <div class="skill-label">Serving & MLOps</div>
+            <div class="skill-text">
+              FastAPI, Docker, CI/CD, vLLM, quantization, dynamic batching, caching,
+              streaming, EM/F1, RAGAS, A/B tests
+            </div>
+          </div>
+          <div>
+            <div class="skill-label">Speech & Doc AI</div>
+            <div class="skill-text">
+              Whisper, Wav2Vec2, VAD, Tesseract, DocTR, LayoutLMv3, Donut
+            </div>
+          </div>
+          <div>
+            <div class="skill-label">Cloud & Data</div>
+            <div class="skill-text">GCP, Vertex AI, SQL, PostgreSQL</div>
+          </div>
+          <div>
+            <div class="skill-label">Collaboration</div>
+            <div class="skill-text">Git, Jira, Confluence, Agile/Scrum</div>
+          </div>
+          <div>
+            <div class="skill-label">Languages</div>
+            <div class="skill-text">English (Advanced), German (A2–B1)</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Education</div>
+        <div class="item">
+          <div class="item-title">
+            M.Sc. Research in Computer and Systems Engineering
+          </div>
+          <div class="item-subtitle">
+            Technische Universität Ilmenau · 2020 – 2024
+          </div>
+        </div>
+        <div class="item">
+          <div class="item-title">B.Sc. Computer Systems Engineering</div>
+          <div class="item-subtitle">
+            UET Peshawar, Pakistan · 2014 – 2018
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
